@@ -1,7 +1,5 @@
 import Image from 'next/image'
 import React from 'react'
-import { Input } from "@/components/ui/input"
-import { EnvelopeClosedIcon } from '@radix-ui/react-icons'
 import EmailInput from '@/components/Micro/EmailInput'
 import { Button } from '@/components/ui/button'
 import GoogleIcon from '@/components/Micro/SVG/Google'
