@@ -1,23 +1,22 @@
 import { Input } from '@/components/ui/input'
+import { useNewFolioStore } from '@/lib/Zustand'
 import React from 'react'
 
-type Props = {
-  formData: any
-  setFormData: any
-}
 
-const Step1 = ({ formData, setFormData }: Props) => {
+const Step1 = () => {
+  const { newFolio, setNewFolio } = useNewFolioStore()
+
   return (
     <>
       <div className='flex flex-col gap-[0.5rem]'>
         <Input
           className='border border-white/10 h-[3rem]'
           placeholder='Enter QuickFolio name'
-          value={formData.name}
-          onChange={(e) => setFormData({
-            ...formData,
+          value={newFolio.name}
+          onChange={(e) => setNewFolio({
+            ...newFolio,
             name: e.target.value,
-            folio_name: e.target.value.toLowerCase().replace(/ /g, '-')
+            folio_name: e.target.value.toLowerCase().replace(/\s/g, '-')
           })}
         />
       </div>
@@ -25,8 +24,11 @@ const Step1 = ({ formData, setFormData }: Props) => {
         <Input
           className='border border-white/10 h-[3rem]'
           placeholder='Enter your folio name'
-          value={formData.folio_name}
-          onChange={(e) => setFormData({ ...formData, folio_name: e.target.value })}
+          value={newFolio.folio_name}
+          onChange={(e) => setNewFolio({
+            ...newFolio,
+            folio_name: e.target.value
+          })}
         />
       </div>
     </>

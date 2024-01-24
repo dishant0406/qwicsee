@@ -15,29 +15,26 @@ import Step1 from './Steps/Step1'
 import Step2 from './Steps/Step2'
 import { ChevronRightIcon, ChevronLeftIcon } from '@radix-ui/react-icons'
 import Step3 from './Steps/Step3'
+import { useNewFolioModalStore } from '@/lib/Zustand/hooks/ModalStates'
 
 
-type Props = {
-
-}
-
-
+type Props = {}
 
 const NewSiteModal = (props: Props) => {
   const [step, setStep] = useState(0)
-  const [formData, setFormData] = useState({
-    name: '',
-    folio_name: '',
-    layout: '',
-    theme: ''
-  })
 
-  const [open, setOpen] = useState(false)
+  const { open, setOpen } = useNewFolioModalStore()
+  const totalSteps = 3
 
   const handleStep = (type: string) => {
     if (type === 'BACK') {
       setStep(step - 1)
     } else {
+      if (step === totalSteps - 1) {
+        setOpen(false)
+        setStep(0)
+        return
+      }
       setStep(step + 1)
     }
   }
@@ -54,42 +51,35 @@ const NewSiteModal = (props: Props) => {
   }
 
   return (
-    <span>
-      <button onClick={() => {
-        setOpen(true)
-      }}>
-        <AddNewSiteCard />
-      </button >
-      <Dialog open={open} onOpenChange={(e) => {
-        setOpen(e)
-      }}>
-        <DialogContent className='bg-bgray'>
-          <DialogHeader>
-            <DialogTitle>New QuickFolio</DialogTitle>
-            <DialogDescription>
-              {desciptionText()}
-            </DialogDescription>
-          </DialogHeader>
-          <div className='flex flex-col gap-[1rem] mt-[0.5rem]'>
-            {step === 0 && <Step1 formData={formData} setFormData={setFormData} />}
-            {step === 1 && <Step2 formData={formData} setFormData={setFormData} />}
-            {step === 2 && <Step3 formData={formData} setFormData={setFormData} />}
-            <div className='flex gap-[1rem] grow justify-center w-full'>
-              <Button disabled={
-                step === 0
-              } onClick={() => handleStep('BACK')} className='h-[3rem] w-[50%] flex items-center justify-center font-medium'>
-                <ChevronLeftIcon className='h-[2vh] w-[2vh] mr-[0.5rem]' />
-                Back
-              </Button>
-              <Button onClick={() => handleStep('NEXT')} className='h-[3rem] flex items-center justify-center w-[50%] font-medium'>
-                Next
-                <ChevronRightIcon className='h-[2vh] w-[2vh] ml-[0.5rem]' />
-              </Button>
-            </div>
+    <Dialog open={open} onOpenChange={(e) => {
+      setOpen(e)
+    }}>
+      <DialogContent className='bg-bgray'>
+        <DialogHeader>
+          <DialogTitle>New QuickFolio</DialogTitle>
+          <DialogDescription>
+            {desciptionText()}
+          </DialogDescription>
+        </DialogHeader>
+        <div className='flex flex-col gap-[1rem] mt-[0.5rem]'>
+          {step === 0 && <Step1 />}
+          {step === 1 && <Step2 />}
+          {step === 2 && <Step3 />}
+          <div className='flex gap-[1rem] grow justify-center w-full'>
+            <Button disabled={
+              step === 0
+            } onClick={() => handleStep('BACK')} className='h-[3rem] w-[50%] flex items-center justify-center font-medium'>
+              <ChevronLeftIcon className='h-[2vh] w-[2vh] mr-[0.5rem]' />
+              Back
+            </Button>
+            <Button onClick={() => handleStep('NEXT')} className='h-[3rem] flex items-center justify-center w-[50%] font-medium'>
+              Next
+              <ChevronRightIcon className='h-[2vh] w-[2vh] ml-[0.5rem]' />
+            </Button>
           </div>
-        </DialogContent>
-      </Dialog>
-    </span>
+        </div>
+      </DialogContent>
+    </Dialog>
   )
 }
 

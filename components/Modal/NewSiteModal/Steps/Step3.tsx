@@ -1,14 +1,12 @@
 'use client'
 
 import { Switch } from '@/components/ui/switch'
+import { useNewFolioStore } from '@/lib/Zustand'
 import React from 'react'
 
-type Props = {
-  formData: any
-  setFormData: any
-}
 
-const Step3 = ({ formData, setFormData }: Props) => {
+const Step3 = () => {
+  const { newFolio: formData, setNewFolio: setFormData } = useNewFolioStore()
 
   let str = formData.theme === 'light' ? 'bg-white' : 'bg-black'
   let childStr = formData.theme === 'light' ? 'bg-[#dcdcdc]' : 'bg-[#434343]'

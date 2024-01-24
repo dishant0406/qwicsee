@@ -22,7 +22,7 @@ export default function Home() {
               <SiteCard name={site} key={i} />
             ))
           }
-          <NewSiteModal />
+          <AddNewSiteCard />
         </div>
       </div>
     </div>
