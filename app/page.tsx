@@ -1,21 +1,28 @@
+import AddNewSiteCard from '@/components/Desktop/AddNewSiteCard'
 import DashNav from '@/components/Desktop/Dashboard/DashNav'
 import SideBar from '@/components/Desktop/SideBar'
-import { DotsVerticalIcon } from '@radix-ui/react-icons'
-import Image from 'next/image'
+import SiteCard from '@/components/Desktop/SiteCard'
+import NewSiteModal from '@/components/Modal/NewSiteModal'
 
 export default function Home() {
+  const sites = [
+    'My Portfolio',
+    'document 1',
+    'darft_portfolio_1',
+    'prod portfolio 2',
+  ]
   return (
     <div className='flex relative min-h-[100vh] w-full pl-[8vw] justify-between'>
       <SideBar />
       <div className='flex flex-col min-h-[100vh] w-full'>
         <DashNav />
-        <div className='flex-grow flex p-[3%]'>
-          <div className='flex flex-col gap-[0.5rem] w-[10vw]'>
-            <Image alt='bg' className='object-cover h-[25vh] w-[10vw]' src='/assets/bg/quicksee-bg.png' width={200} height={200} />
-            <p className='text-white/50 w-full px-[3%] truncate text-sm'>
-              My Portfolio
-            </p>
-          </div>
+        <div className='flex-grow gap-[2vw] flex p-[3%]'>
+          {
+            sites.map((site, i) => (
+              <SiteCard name={site} key={i} />
+            ))
+          }
+          <NewSiteModal />
         </div>
       </div>
     </div>

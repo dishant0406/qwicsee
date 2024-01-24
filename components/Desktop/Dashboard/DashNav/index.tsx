@@ -12,7 +12,7 @@ const DashNav = (props: Props) => {
       </p>
       <Button className='h-[40px] flex text-bgray bg-white/80 rounded-3xl font-medium'>
         <PlusCircledIcon className='h-[2.5vh] w-[2.5vh] mr-[0.5rem]' />
-        New Project
+        New QuickFolio
       </Button>
     </div>
   )
