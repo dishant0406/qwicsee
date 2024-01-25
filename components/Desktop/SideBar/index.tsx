@@ -3,6 +3,9 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
 import { MixIcon, ExitIcon, ExclamationTriangleIcon, GearIcon, Pencil2Icon, GlobeIcon, ChatBubbleIcon } from '@radix-ui/react-icons'
+import { useFieldSelectorModalStore } from '@/lib/Zustand/hooks/ModalStates'
+import FieldSelecter from '../FieldSelecter'
+import { useSideBarOptions } from '@/lib/Zustand'
 
 type Props = {}
 
@@ -24,38 +27,9 @@ const SideIcon = ({
 }
 
 const SideBar = (props: Props) => {
-  const [sideBarOptions, setSideBarOptions] = useState([
-    {
-      name: 'Dashboard',
-      Icon: MixIcon,
-      isSelected: true,
-      isVisible: true
-    },
-    {
-      name: 'Editor',
-      Icon: Pencil2Icon,
-      isSelected: false,
-      isVisible: false
-    },
-    {
-      name: 'Community',
-      Icon: GlobeIcon,
-      isSelected: false,
-      isVisible: true
-    },
-    {
-      name: 'Settings',
-      Icon: GearIcon,
-      isSelected: false,
-      isVisible: false
-    },
-    {
-      name: 'Contact Us',
-      Icon: ChatBubbleIcon,
-      isSelected: false,
-      isVisible: true
-    },
-  ])
+  const { setSideBarOptions, sideBarOptions } = useSideBarOptions()
+
+  const { setOpen: fieldSelectorOpen } = useFieldSelectorModalStore()
 
   const handleSideBarOptionClick = (name: string) => {
     const newOptions = sideBarOptions.map((option) => {
@@ -72,48 +46,57 @@ const SideBar = (props: Props) => {
       }
     })
 
+    if (name === 'Editor') {
+      fieldSelectorOpen(true)
+    } else {
+      fieldSelectorOpen(false)
+    }
+
     setSideBarOptions(newOptions)
   }
 
   return (
-    <div className='h-[100vh] fixed left-0  flex flex-col justify-between items-center py-[3vh] w-[8vw] bg-[#002024]'>
-      <div className='w-full flex flex-col items-center'>
-        <Image src={'/assets/logo/logo-dark-trans.png'}
-          className='h-[8vh] w-[8vh]'
-          alt='logo' width={100} height={100} />
+    <>
+      <div className='h-[100vh] fixed left-0 z-[2] flex flex-col justify-between items-center py-[3vh] w-[8vw] bg-[#002024]'>
+        <div className='w-full flex flex-col items-center'>
+          <Image src={'/assets/logo/logo-dark-trans.png'}
+            className='h-[8vh] w-[8vh]'
+            alt='logo' width={100} height={100} />
 
-        <div className='flex flex-col items-center justify-center mt-[10vh]'>
+          <div className='flex flex-col items-center justify-center mt-[10vh]'>
 
-          {
-            sideBarOptions.map((option) => {
-              return (
-                option.isVisible ? <SideIcon
-                  key={option.name}
-                  name={option.name}
-                  Icon={option.Icon}
-                  isSelected={option.isSelected}
-                  onClick={() => {
-                    handleSideBarOptionClick(option.name)
-                  }}
-                /> : null
-              )
-            })
-          }
+            {
+              sideBarOptions.map((option) => {
+                return (
+                  option.isVisible ? <SideIcon
+                    key={option.name}
+                    name={option.name}
+                    Icon={option.Icon}
+                    isSelected={option.isSelected}
+                    onClick={() => {
+                      handleSideBarOptionClick(option.name)
+                    }}
+                  /> : null
+                )
+              })
+            }
 
+          </div>
+        </div>
+        <div className='w-full flex flex-col justify-center items-center'>
+          <div className='flex flex-col gap-[3vh] items-center justify-center mt-[10vh]'>
+            <ExclamationTriangleIcon className='h-[2.5vh] w-[2.5vh] text-white/80' />
+            <ExitIcon className='h-[2.5vh] w-[2.5vh] text-white/80' />
+            <img
+              className='h-[5vh] w-[5vh] rounded-full'
+              src='https://avatars.githubusercontent.com/u/54866762?v=4' />
+
+
+          </div>
         </div>
       </div>
-      <div className='w-full flex flex-col justify-center items-center'>
-        <div className='flex flex-col gap-[3vh] items-center justify-center mt-[10vh]'>
-          <ExclamationTriangleIcon className='h-[2.5vh] w-[2.5vh] text-white/80' />
-          <ExitIcon className='h-[2.5vh] w-[2.5vh] text-white/80' />
-          <img
-            className='h-[5vh] w-[5vh] rounded-full'
-            src='https://avatars.githubusercontent.com/u/54866762?v=4' />
-
-
-        </div>
-      </div>
-    </div>
+      <FieldSelecter />
+    </>
   )
 }
 
