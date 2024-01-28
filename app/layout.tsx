@@ -11,7 +11,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: 'Qwicsee',
-  description: 'Make your portfolio like never before!!',
+  description: 'Transform your portfolio with Qwicsee! Experience the magic of effortless design, intuitive customization, and powerful analytics. Ideal for creatives and professionals seeking to make a striking online impression. Join Qwicsee and craft visually stunning portfolios that captivate and inspire!',
 }
 
 export default function RootLayout({
