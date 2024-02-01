@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import { RocketIcon, EyeOpenIcon, MobileIcon, DesktopIcon } from '@radix-ui/react-icons'
 import { useNewFolioModalStore } from '@/lib/Zustand/hooks/ModalStates'
 import { useViewState } from '@/lib/Zustand'
+import Image from 'next/image'
 
 type Props = {}
 
@@ -15,14 +16,20 @@ const FolioNav = (props: Props) => {
 
 
   return (
-    <div className='w-[calc(100vw-8vw)] z-[1] bg-bgray px-[3%] fixed top-0 right-0 flex justify-between items-center h-[80px] border-b border-white/10'>
-      <div>
-        <p className='text-white/80 font-[600]'>
-          Portfolio Website
-        </p>
-        <p className='text-white/50 text-[14px]'>
-          John's Workspace
-        </p>
+    <div className='w-[calc(100vw)] z-[3] bg-bdgray px-[2%] fixed top-0 right-0 flex justify-between items-center h-[80px] border-b border-white/80'>
+      <div className='flex gap-[2rem] h-full items-center'>
+        <Image src={'/assets/logo/logo-dark-trans.png'}
+          className='h-[7vh] w-[7vh]'
+          alt='logo' width={100} height={100} />
+
+        <div>
+          <p className='text-white/80 font-[600]'>
+            Portfolio Website
+          </p>
+          <p className='text-white/50 text-[14px]'>
+            John's Workspace
+          </p>
+        </div>
       </div>
       <div className='flex h-full gap-[1rem] items-center'>
         {

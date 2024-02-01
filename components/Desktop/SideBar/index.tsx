@@ -57,11 +57,8 @@ const SideBar = (props: Props) => {
 
   return (
     <>
-      <div className='h-[100vh] fixed left-0 z-[2] flex flex-col justify-between items-center py-[3vh] w-[8vw] bg-[#002024]'>
+      <div className='h-[100vh] fixed left-0 z-[2] flex flex-col justify-between items-center py-[3vh] w-[8vw] bg-bdgray'>
         <div className='w-full flex flex-col items-center'>
-          <Image src={'/assets/logo/logo-dark-trans.png'}
-            className='h-[8vh] w-[8vh]'
-            alt='logo' width={100} height={100} />
 
           <div className='flex flex-col items-center justify-center mt-[10vh]'>
 

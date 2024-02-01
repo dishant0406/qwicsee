@@ -131,7 +131,7 @@ const FieldSelecter = (props: Props) => {
         <div
           className={`h-[calc(100vh-80px)] z-[1] ${!open ? 'left-[-38vw]' : 'left-[8vw]'
             } transition-all duration-500
-        border border-t-0 border-white/10 fixed bottom-0 px-[1%]  flex flex-col  items-center py-[3vh] w-[30vw] bg-bgray`}>
+        border border-t-0 border-white/10 fixed bottom-0 px-[1%]  flex flex-col  items-center py-[3vh] w-[30vw] bg-bdgray`}>
           <div className='w-full  relative h-full flex flex-col items-center'>
 
             <div className='w-full h-full mt-[1vh]'>
@@ -171,7 +171,7 @@ const FieldSelecter = (props: Props) => {
 
             </div>
 
-            <div className={`w-full transition-all duration-300 h-[calc(100%-3vh)] ${newComponentOpen ? 'bottom-[-5%]' : 'bottom-[-89%]'} flex flex-col bg-bgray px-[2%] py-[2%] items-center rounded-b-none border-b-0 rounded-2xl absolute left-0 border border-white/50`}>
+            <div className={`w-full transition-all duration-300 h-[calc(100%-3vh)] ${newComponentOpen ? 'bottom-[-5%]' : 'bottom-[-89%]'} flex flex-col bg-bdgray px-[2%] py-[2%] items-center rounded-b-none border-b-0 rounded-2xl absolute left-0 border border-white/50`}>
               <button onClick={() => setNewComponentOpen(e => !e)} className='flex h-[7vh] shrink-0 rounded-xl w-full items-center px-[4%] justify-between bg-white/80'>
                 <p className='text-bgray font-medium '>Add Component</p>
                 <ChevronUpIcon className={`${newComponentOpen ? 'transform rotate-180' : ''
