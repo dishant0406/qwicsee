@@ -59,6 +59,27 @@ const FieldSelecter = (props: Props) => {
     { id: 'head', name: 'Head' },
     { id: 'title', name: 'Title' },
   ]);
+
+  const [basicItems, setBasicItems] = useState([
+    { id: 'text', name: 'Text' },
+    { id: 'image', name: 'Image' },
+    { id: 'button', name: 'Button' },
+    { id: 'input', name: 'Input' },
+    { id: 'checkbox', name: 'Checkbox' },
+    { id: 'radio', name: 'Radio' },
+    { id: 'select', name: 'Select' },
+    { id: 'textarea', name: 'Textarea' },
+    { id: 'date', name: 'Date' },
+    { id: 'time', name: 'Time' },
+    { id: 'datetime', name: 'Datetime' },
+    { id: 'number', name: 'Number' },
+    { id: 'range', name: 'Range' },
+    { id: 'color', name: 'Color' },
+    { id: 'file', name: 'File' },
+    { id: 'hidden', name: 'Hidden' },
+    { id: 'submit', name: 'Submit' },
+    { id: 'reset', name: 'Reset' },
+  ]);
   const [selectedItems, setSelectedItems] = useState<
     {
       id: string;

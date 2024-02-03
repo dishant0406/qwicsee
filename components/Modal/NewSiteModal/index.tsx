@@ -16,14 +16,18 @@ import Step2 from './Steps/Step2'
 import { ChevronRightIcon, ChevronLeftIcon } from '@radix-ui/react-icons'
 import Step3 from './Steps/Step3'
 import { useNewFolioModalStore } from '@/lib/Zustand/hooks/ModalStates'
+import { useRouter } from 'next/navigation'
+import { useNewFolioStore } from '@/lib/Zustand'
 
 
 type Props = {}
 
 const NewSiteModal = (props: Props) => {
   const [step, setStep] = useState(0)
+  const router = useRouter()
 
   const { open, setOpen } = useNewFolioModalStore()
+  const { newFolio } = useNewFolioStore()
   const totalSteps = 3
 
   const handleStep = (type: string) => {
@@ -32,6 +36,7 @@ const NewSiteModal = (props: Props) => {
     } else {
       if (step === totalSteps - 1) {
         setOpen(false)
+        router.push(`/folio/${newFolio.folio_name}`)
         setStep(0)
         return
       }
@@ -54,7 +59,7 @@ const NewSiteModal = (props: Props) => {
     <Dialog open={open} onOpenChange={(e) => {
       setOpen(e)
     }}>
-      <DialogContent className='bg-bgray'>
+      <DialogContent className='bg-bdgray'>
         <DialogHeader>
           <DialogTitle>New QuickFolio</DialogTitle>
           <DialogDescription>

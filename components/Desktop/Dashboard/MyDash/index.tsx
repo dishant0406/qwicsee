@@ -27,7 +27,7 @@ const MyDash = (props: Props) => {
     <div className='flex-grow flex-wrap pt-[100px] flex-col flex p-[3%]'>
       <div className='w-full flex flex-col items-center mt-[2vh] justify-center'>
         <p className='text-white font-[600] text-[3vw]'>
-          Welcome to your folio dashboard
+          Welcome to your dashboard
         </p>
         <p className='text-white/60 text-[1.2vw] text-center'>
           Track user activity, website performance, and start new projects
